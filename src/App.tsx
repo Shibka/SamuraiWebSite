@@ -7,7 +7,7 @@ import Footer from "./Footer";
 
 const App = () => {
     return (
-        <div>
+        <div> fdfdf
             <header>
                 <img src="" alt="Logo"/>
             </header>
