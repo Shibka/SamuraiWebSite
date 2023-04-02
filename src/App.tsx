@@ -9,7 +9,7 @@ const App = () => {
     return (
         <div>
             <header>
-                <img src="" alt="Logo"/>
+                <img src='./Images/Logo.jpg' alt="Logo"/>
             </header>
             <Technologies/>
             <Footer />
