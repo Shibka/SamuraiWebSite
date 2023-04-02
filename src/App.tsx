@@ -8,7 +8,9 @@ import Footer from "./Footer";
 const App = () => {
     return (
         <div>
-            <Header/>
+            <header>
+                <img src="" alt="Logo"/>
+            </header>
             <Technologies/>
             <Footer />
         </div>
