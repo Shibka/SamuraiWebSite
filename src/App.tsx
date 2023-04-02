@@ -1,17 +1,18 @@
 import React from "react";
 import "./App.css";
-import Header from "./Header";
-import Technologies from "./Technologies";
-import Footer from "./Footer";
-import Logo from './Images/Logo.jpg';
+import logo from './Images/logo.png';
+
 const App = () => {
     return (
         <div>
             <header>
-                <img src={Logo} alt="Logo" width={150}/>
+                <img src={logo} alt="Logo" width={150}/>
             </header>
-            <Technologies/>
-            <Footer />
+            <nav>
+                <div>Profile</div>
+                <div>Messages</div>
+            </nav>
+            <div>Main Content</div>
         </div>
     );
 }
