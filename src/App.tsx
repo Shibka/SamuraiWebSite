@@ -3,13 +3,12 @@ import "./App.css";
 import Header from "./Header";
 import Technologies from "./Technologies";
 import Footer from "./Footer";
-
-
+import Logo from './Images/Logo.jpg';
 const App = () => {
     return (
         <div>
             <header>
-                <img src='./Images/Logo.jpg' alt="Logo"/>
+                <img src={Logo} alt="Logo" width={150}/>
             </header>
             <Technologies/>
             <Footer />
