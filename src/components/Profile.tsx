@@ -1,7 +1,8 @@
 import React from "react";
 import MainBackground from "../Images/MainBackground/MainBackground.jpg";
+import './Profile.css'
 
-const Profile = () =>{
+const Profile = () => {
     return (
         <div className='content'>
             <div>
