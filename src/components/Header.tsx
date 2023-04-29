@@ -1,9 +1,9 @@
 import React from "react";
 import logo from "../Images/Logo/logo.png";
-import './Header.css'
+import s from './Header.module.css'
 const Header = () => {
     return (
-        <header className='header'>
+        <header className={s.header}>
             <img src={logo} alt="Logo" width={150}/>
         </header>
     )

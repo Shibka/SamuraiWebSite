@@ -1,10 +1,10 @@
 import React from "react";
 import MainBackground from "../Images/MainBackground/MainBackground.jpg";
-import './Profile.css'
+import s from './Profile.module.css'
 
 const Profile = () => {
     return (
-        <div className='content'>
+        <div className={s.content}>
             <div>
                 <img src={MainBackground} alt="Background" width={1000}/>
             </div>
@@ -17,10 +17,10 @@ const Profile = () => {
                     New post
                 </div>
                 <div>
-                    <div>
+                    <div className={s.item}>
                         post 1
                     </div>
-                    <div>
+                    <div className={s.item}>
                         post 2
                     </div>
                 </div>
