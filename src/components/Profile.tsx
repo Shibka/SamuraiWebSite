@@ -6,14 +6,14 @@ const Profile = () => {
     return (
         <div className={s.content}>
             <div>
-                <img src={MainBackground} alt="Background" width={1000}/>
+                <img src={MainBackground} alt="Background" width={800}/>
             </div>
-            <div>
+            <div className={s.item}>
                 ava + description
             </div>
-            <div>
+            <div className={s.item}>
                 My posts
-                <div>
+                <div className={s.item}>
                     New post
                 </div>
                 <div>

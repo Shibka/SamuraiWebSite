@@ -5,3 +5,8 @@
 .item{
     color: white;
 }
+
+.item.active{
+    /*color: mediumslateblue;*/
+    color: white;
+}
