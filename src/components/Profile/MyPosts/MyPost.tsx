@@ -3,11 +3,12 @@ import s from './MyPost.module.css'
 import Post from "./Post/Post";
 
 const MyPost = () => {
-    let postData = [
+    let posts = [
         {id: 1, message: 'Hello, how you doin?', likesCount: 12},
         {id: 2, message: 'Hi, great, thanx', likesCount: 10},
     ]
 
+    let postsElement = posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <div className={s.postsBlock}>
@@ -17,11 +18,10 @@ const MyPost = () => {
                     <textarea></textarea>
                 </div>
                 <div>
-                <button>Add post</button>{postData[0].message}
+                <button>Add post</button>
                 </div>
                 <div className={s.posts}>
-                <Post message={postData[0].message} likesCount={postData[0].likesCount}/>
-                <Post message={postData[1].message} likesCount={postData[1].likesCount}/>
+                    {postsElement}
                 </div>
             </div>
         </div>
