@@ -1,4 +1,4 @@
-# Hello, Самурай! 
+# Hello! 
 
 
 В этом стартовом проекте установлены следующие библиотеки
@@ -21,12 +21,6 @@ sdsdad
 - **reselect**
 - **typescript** 
 - **uuid** and **@types/uuid**
-
-После git clone 'link' установите все зависимости из package.json:
-### `yarn`
-
-а потом запустите проект:
-### `yarn start`
 
 
 <hr>
