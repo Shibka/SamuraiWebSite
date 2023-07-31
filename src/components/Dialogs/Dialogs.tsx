@@ -13,7 +13,7 @@ const Dialogs = () => {
     ]
     let messages = [
         {id: 1, message: 'Hi'},
-        {id: 2, message: 'Hi Hi how are you?'},sdf
+        {id: 2, message: 'Hi Hi how are you?'},
         {id: 3, message: 'Hi Hi Hi'}
     ]
 
