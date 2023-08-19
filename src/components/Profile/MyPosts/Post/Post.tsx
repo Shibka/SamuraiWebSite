@@ -5,7 +5,7 @@ type PostPropsType = {
     message: string;
     likesCount: number
 }
-const Post = (props: PostPropsType) => {
+export const Post = (props: PostPropsType) => {
     return (
         <div className={s.item}>
             <img src="https://i.pinimg.com/736x/bb/30/32/bb30326dda4f8240abb3ac64b4804583.jpg" alt="Avatar"/>
@@ -17,4 +17,3 @@ const Post = (props: PostPropsType) => {
         </div>
     )
 }
-export default Post

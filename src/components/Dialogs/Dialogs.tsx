@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import Message from "./Message/Message";
-import DialogItem from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
+import {DialogItem} from "./DialogItem/DialogItem";
 
 type DialogsStructureType = {
     id: number
@@ -17,7 +17,7 @@ type DialogsPropsType = {
 }
 
 
-const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs = (props: DialogsPropsType) => {
 
     // let dialogs = [
     //     {id: 1, name: 'Alex'},
@@ -46,5 +46,3 @@ const Dialogs = (props: DialogsPropsType) => {
         </div>
     );
 };
-
-export default Dialogs;

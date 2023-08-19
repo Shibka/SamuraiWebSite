@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './MyPost.module.css'
-import Post from "./Post/Post";
+import {Post} from "./Post/Post";
 
 type PostsStructureType = {
     id: number
@@ -10,7 +10,7 @@ type PostsStructureType = {
 type PostsPropsType = {
     posts: PostsStructureType[]
 }
-const MyPost = (props: PostsPropsType) => {
+export const MyPost = (props: PostsPropsType) => {
     // let posts = [
     //     {id: 1, message: 'Hello, how you doin?', likesCount: 12},
     //     {id: 2, message: 'Hi, great, thanx', likesCount: 10},
@@ -35,4 +35,3 @@ const MyPost = (props: PostsPropsType) => {
         </div>
     )
 }
-export default MyPost
