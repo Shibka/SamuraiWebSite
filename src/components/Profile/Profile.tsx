@@ -13,10 +13,7 @@ type PostsPropsType = {
     posts: ProfilePropsType[]
 }
 export const Profile = (props: PostsPropsType) => {
-    // let posts = [
-    //     {id: 1, message: 'Hello, how you doin?', likesCount: 12},
-    //     {id: 2, message: 'Hi, great, thanx', likesCount: 10},
-    // ]
+
     return (
         <div>
             <ProfileInfo/>
