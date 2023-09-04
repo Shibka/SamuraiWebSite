@@ -19,16 +19,16 @@ type DialogsPropsType = {
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    let messagesElements = props.messages.map(m => <Message message={m.message}/>)
+    let messagesElements = props.messages.map((m,index) => <Message key={index} message={m.message}/>)
 
-    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+    let dialogsElements = props.dialogs.map((d,index) => <DialogItem  key={index} name={d.name} id={d.id}/>)
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
+            <div className={s.bubbledLeft_bubbledRight}>
                 {messagesElements}
             </div>
         </div>

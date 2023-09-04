@@ -20,6 +20,12 @@ const Navbar = () => {
             <div className={s.item}>
                 <NavLink to='/settings' activeClassName={s.activeLink}>Settings</NavLink>
             </div>
+            <div className={s.item}>
+                <NavLink to='/friends' className={s.item} activeClassName={s.activeLink}>Friends</NavLink>
+                <img className={s.item_img} src="https://i.pinimg.com/736x/bb/30/32/bb30326dda4f8240abb3ac64b4804583.jpg" alt="Avatar"/>
+                <img className={s.item_img} src="https://i.pinimg.com/736x/bb/30/32/bb30326dda4f8240abb3ac64b4804583.jpg" alt="Avatar"/>
+                <img className={s.item_img} src="https://i.pinimg.com/736x/bb/30/32/bb30326dda4f8240abb3ac64b4804583.jpg" alt="Avatar"/>
+                </div>
         </nav>
     )
 }

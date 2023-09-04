@@ -22,3 +22,40 @@ padding: 10px;
 .message{
 
 }
+
+.item_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+
+
+
+
+.bubbledLeft_bubbledRight {
+    padding: 5px 9px;
+}
+
+.bubbledLeft{
+    border-radius: 8px 8px 8px 0px;
+    background-color: rgb(20, 20, 100);
+    color: #ffffff;
+    max-width: 400px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.bubbledLeft:nth-child(2n) {
+    margin-left: auto;
+     background-color: #0077DD;
+}
+
+
+.bubbledRight{
+    float: right;
+    margin-left: auto;
+    text-align: right;
+    border-radius: 8px 8px 0px 8px;
+    background-color: #07D;
+    color: white;
+}
