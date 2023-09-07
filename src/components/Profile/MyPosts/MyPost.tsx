@@ -12,6 +12,8 @@ type PostsPropsType = {
 }
 export const MyPost = (props: PostsPropsType) => {
 
+    const onCLickAddPostHandler = () =>{
+    }
 
     let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
     return (
@@ -23,7 +25,7 @@ export const MyPost = (props: PostsPropsType) => {
                     <textarea></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={onCLickAddPostHandler}>Add post</button>
                 </div>
                 <div className={s.posts}>
                     {postsElement}

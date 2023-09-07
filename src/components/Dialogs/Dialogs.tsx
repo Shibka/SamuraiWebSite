@@ -30,6 +30,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.bubbledLeft_bubbledRight}>
                 {messagesElements}
+                <textarea></textarea>
+                <button>sent</button>
             </div>
         </div>
     );

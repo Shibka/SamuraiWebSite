@@ -12,6 +12,7 @@ export const Message = (props: MessagePropsType) => {
             <div className={s.bubbledLeft}>
                 <img className={s.item_img} src="https://i.pinimg.com/736x/bb/30/32/bb30326dda4f8240abb3ac64b4804583.jpg" alt="Avatar"/>
             {props.message}
+
             </div>
     )
 };
