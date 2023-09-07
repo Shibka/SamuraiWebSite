@@ -18,10 +18,11 @@ export let state = {
             {id: 3, message: 'Hi Hi Hi'}
         ]
     },
-    friends: [
-        {id: 2, name: 'Igor'},
-        {id: 3, name: 'Leha'},
-        {id: 4, name: 'Gleb'}
-    ]
-
+    sidebar: {
+        friends: [
+            {id: 2, name: 'Igor'},
+            {id: 3, name: 'Leha'},
+            {id: 4, name: 'Gleb'}
+        ]
+    },
 }
