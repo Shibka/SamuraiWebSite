@@ -26,3 +26,8 @@ export let state = {
         ]
     },
 }
+
+export const addPost =(postMessage: string)=>{
+    let newPost = {id: 5, message: postMessage, likesCount: 0}
+    state.profile.posts.push(newPost)
+}

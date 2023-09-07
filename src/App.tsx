@@ -17,6 +17,7 @@ type DialogsStructureType ={
 type MessagesStructureType = {
     id: number
     message: string
+
 }
 type ProfileStructureType = {
     id: number
@@ -28,6 +29,7 @@ type AppPropsType = {
     dialogs: Array<DialogsStructureType>
     messages: Array<MessagesStructureType>
     posts: ProfileStructureType[]
+    addPost: (postMessage: string)=>void
 }
 const App = (props:AppPropsType ) => {
 
@@ -40,7 +42,7 @@ const App = (props:AppPropsType ) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path={'/dialogs'} render={()=> <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                <Route path={'/profile'} render={()=> <Profile posts={props.posts}/>}/>
+                <Route path={'/profile'} render={()=> <Profile posts={props.posts} addPost={props.addPost}/>}/>
                 <Route path={'/news'} render={()=> <News/>}/>
                 <Route path={'/music'} render={()=> <Music/>}/>
                 <Route path={'/settings'} render={()=> <Settings/>}/>
