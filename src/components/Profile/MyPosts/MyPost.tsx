@@ -17,10 +17,11 @@ export const MyPost = (props: PostsPropsType) => {
        props.addPost(e.currentTarget.value)
     }
     const onCLickAddPostHandler = () =>{
+
 props.addPost('f')
     }
 
-    let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElement = props.posts.map((p, i) => <Post message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <div className={s.postsBlock}>
@@ -30,7 +31,7 @@ props.addPost('f')
                     <textarea onChange={onChangeHandler}></textarea>
                 </div>
                 <div>
-                    <button onClick={onCLickAddPostHandler}>Add post</button>
+                    <button  onClick={onCLickAddPostHandler}>Add post</button>
                 </div>
                 <div className={s.posts}>
                     {postsElement}
