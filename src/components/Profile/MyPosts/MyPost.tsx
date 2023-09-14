@@ -9,19 +9,19 @@ type PostsStructureType = {
 }
 type PostsPropsType = {
     posts: PostsStructureType[]
-    addPost: (postMessage: string)=>void
+    addPost: (postMessage: string) => void
 }
 export const MyPost = (props: PostsPropsType) => {
 
-    const onChangeHandler=(e: ChangeEvent<HTMLTextAreaElement>)=>{
-       props.addPost(e.currentTarget.value)
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.addPost('f')
     }
-    const onCLickAddPostHandler = () =>{
+    const onCLickAddPostHandler = () => {
 
-props.addPost('f')
+        props.addPost('f')
     }
 
-    let postsElement = props.posts.map((p, i) => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElement = props.posts.map((p, i) => <Post key={i} message={p.message} likesCount={p.likesCount}/>)
     return (
         <div>
             <div className={s.postsBlock}>
@@ -31,7 +31,7 @@ props.addPost('f')
                     <textarea onChange={onChangeHandler}></textarea>
                 </div>
                 <div>
-                    <button  onClick={onCLickAddPostHandler}>Add post</button>
+                    <button onClick={onCLickAddPostHandler}>Add post</button>
                 </div>
                 <div className={s.posts}>
                     {postsElement}

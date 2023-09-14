@@ -29,7 +29,9 @@
         },
     }
 
-export const addPost = (postMessage: string) => {
-        let newPost = {id: 5, message: postMessage, likesCount: 0}
-    state.profile.posts.push(newPost)
-}
+ export const addPost = (postMessage: string) => {
+     const newPost = { id: 5, message: postMessage, likesCount: 0 };
+     const updatedProfile = { ...state.profile, posts: [...state.profile.posts] };
+     updatedProfile.posts.push(newPost);
+     state = {...state, profile: updatedProfile,};
+ };
