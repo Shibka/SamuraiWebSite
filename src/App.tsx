@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Friends} from "./components/Friends/Friends";
+import {addPost} from "./redux/state";
 
 type DialogsStructureType ={
     id: number
@@ -32,8 +33,6 @@ type AppPropsType = {
     addPost: (postMessage: string)=>void
 }
 const App = (props:AppPropsType ) => {
-
-
 
     return (
         <BrowserRouter>

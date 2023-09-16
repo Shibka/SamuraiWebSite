@@ -1,6 +1,7 @@
 
 
- export let state = {
+
+export let state = {
         profile: {
             posts: [
                 {id: 1, message: 'Hello, how you doin?', likesCount: 12},
@@ -30,8 +31,10 @@
     }
 
  export const addPost = (postMessage: string) => {
-     const newPost = { id: 5, message: postMessage, likesCount: 0 };
+
+     const newPost = { id: 5, message: postMessage, likesCount: 3 };
      const updatedProfile = { ...state.profile, posts: [...state.profile.posts] };
      updatedProfile.posts.push(newPost);
      state = {...state, profile: updatedProfile,};
+
  };
