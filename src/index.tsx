@@ -1,7 +1,5 @@
-import React from "react";
-import "./index.css";
-import {RerenderEntireTree} from "./render";
-import {state} from "./redux/state";
+import {rerenderEntireTree} from "./render";
+import {addPost, state} from "./redux/state";
 
 
-RerenderEntireTree(state)
+rerenderEntireTree({state, addPost})

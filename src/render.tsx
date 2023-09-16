@@ -1,49 +1,55 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {addPost} from "./redux/state";
+
+type ProfileStructureType = {
+    id: number;
+    message: string;
+    likesCount: number;
+};
+type DialogsStructureType = {
+    id: number;
+    name: string;
+};
+type MessagesStructureType = {
+    id: number;
+    message: string;
+};
+type FriendsStructureType = {
+    id: number;
+    name: string;
+    // Add the 'message' property here to match the actual data structure
+    message: string;
+};
 
 type renderPropsType = {
     state: {
         profile: {
-            posts: [
-                {
-                    id: number,
-                    message: string,
-                    likesCount: number
-                },
-            ],
-        },
+            posts: ProfileStructureType[];
+        };
         messagesPage: {
-            dialogs: [
-                {
-                    id: number,
-                    name: string
-                },
-
-            ],
-            messages: [
-                { id: number,
-                    message: string },
-            ]
-        },
+            dialogs: DialogsStructureType[];
+            messages: MessagesStructureType[];
+        };
         sidebar: {
-            friends: [
-                { id: number,
-                    name: string },
-            ]
-        },
-    }
-}
+            friends: FriendsStructureType[];
+        };
+    };
+    addPost: (postMessage: string) => void;
+};
 
-export let RerenderEntireTree = (props: renderPropsType) => {
+export let rerenderEntireTree = (props: renderPropsType) => {
+
     ReactDOM.render(
-        <App
-            addPost={addPost}
-            posts={props.state.profile.posts}
-            messages={props.state.messagesPage.messages}
-            dialogs={props.state.messagesPage.dialogs}
-        />, document.getElementById("root"));
-
-}
+        <React.StrictMode>
+            <App
+                addPost={props.addPost}
+                posts={props.state.profile.posts}
+                messages={props.state.messagesPage.messages}
+                dialogs={props.state.messagesPage.dialogs}
+            />
+        </React.StrictMode>,
+        document.getElementById("root")
+    );
+};

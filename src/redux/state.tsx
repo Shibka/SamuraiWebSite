@@ -1,4 +1,5 @@
-
+import {rerenderEntireTree} from "../render";
+import {useState} from "react";
 
 
 export let state = {
@@ -23,12 +24,14 @@ export let state = {
         },
         sidebar: {
             friends: [
-                {id: 2, name: 'Igor'},
-                {id: 3, name: 'Leha'},
-                {id: 4, name: 'Gleb'}
+                {id: 2, name: 'Igor',message: 'Hi'},
+                {id: 3, name: 'Leha',message: 'Hi'},
+                {id: 4, name: 'Gleb',message: 'Hi'}
             ]
         },
+
     }
+
 
  export const addPost = (postMessage: string) => {
 
@@ -36,5 +39,5 @@ export let state = {
      const updatedProfile = { ...state.profile, posts: [...state.profile.posts] };
      updatedProfile.posts.push(newPost);
      state = {...state, profile: updatedProfile,};
-
+     rerenderEntireTree({state,addPost})
  };
