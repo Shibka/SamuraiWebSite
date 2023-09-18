@@ -19,7 +19,6 @@ type MessagesStructureType = {
 type FriendsStructureType = {
     id: number;
     name: string;
-    // Add the 'message' property here to match the actual data structure
     message: string;
 };
 
@@ -41,7 +40,7 @@ type renderPropsType = {
     updatePostMessage: (newPostText: string) => void
 };
 
-export let rerenderEntireTree = (props: renderPropsType) => {
+export const rerenderEntireTree = (props: renderPropsType) => {
 
     ReactDOM.render(
         <React.StrictMode>
@@ -50,7 +49,7 @@ export let rerenderEntireTree = (props: renderPropsType) => {
                 posts={props.state.profile.posts}
                 messages={props.state.messagesPage.messages}
                 dialogs={props.state.messagesPage.dialogs}
-                newPostText={props.state.profile.newPostText}
+                newPostMessage={props.state.profile.newPostText}
                 updatePostMessage ={props.updatePostMessage}
             />
         </React.StrictMode>,

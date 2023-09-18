@@ -31,7 +31,7 @@ type AppPropsType = {
     messages: Array<MessagesStructureType>
     posts: ProfileStructureType[]
     addPost: (postMessage: string) => void
-    newPostText: string
+    newPostMessage: string
     updatePostMessage: (newPostText: string) => void
 
 }
@@ -47,7 +47,7 @@ const App = (props: AppPropsType) => {
                            render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
                     <Route path={'/profile'} render={() => <Profile posts={props.posts}
                                                                     addPost={props.addPost}
-                                                                    newPostText={props.newPostText}
+                                                                    newPostText={props.newPostMessage}
                                                                     updatePostMessage={props.updatePostMessage}
                     />} />
                     <Route path={'/news'} render={() => <News/>}/>

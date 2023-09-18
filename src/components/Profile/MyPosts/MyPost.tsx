@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import s from './MyPost.module.css'
 import {Post} from "./Post/Post";
 
@@ -23,7 +23,7 @@ export const MyPost = (props: PostsPropsType) => {
     const onCLickAddPostHandler = () => {
         if(props.newPostText.trim()){
             props.addPost(props.newPostText)
-            props.updatePostMessage('')
+            // props.updatePostMessage('')
         } else {
        return ' '
         }
@@ -33,8 +33,8 @@ export const MyPost = (props: PostsPropsType) => {
         e.key === 'Enter' && e.ctrlKey && onCLickAddPostHandler()
     }
 
-    let postsElement = props.posts.map((p, i) =>
-        <Post key={i}
+    let postsElement = props.posts.map((p) =>
+        <Post key={p.id}
               message={p.message}
               likesCount={p.likesCount}
         />)

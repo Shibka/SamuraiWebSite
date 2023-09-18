@@ -1,8 +1,38 @@
 import {rerenderEntireTree} from "../render";
 
+type ProfileStructureType = {
+    id: number;
+    message: string;
+    likesCount: number;
+};
+type DialogsStructureType = {
+    id: number;
+    name: string;
+};
+type MessagesStructureType = {
+    id: number;
+    message: string;
+};
+type FriendsStructureType = {
+    id: number;
+    name: string;
+    message: string;
+};
+type StateType = {
 
-
-export let state = {
+        profile: {
+            posts: ProfileStructureType[];
+            newPostText: string
+        };
+        messagesPage: {
+            dialogs: DialogsStructureType[];
+            messages: MessagesStructureType[];
+        };
+        sidebar: {
+            friends: FriendsStructureType[];
+        };
+    }
+export let state: StateType = {
         profile: {
             posts: [
                 {id: 1, message: 'Hello, how you doin?', likesCount: 12},
@@ -35,11 +65,9 @@ export let state = {
 
 
  export const addPost = (postMessage: string) => {
-
      const newPost = { id: 5, message: postMessage, likesCount: 3 };
-     const updatedProfile = { ...state.profile, posts: [...state.profile.posts] };
-     updatedProfile.posts.push(newPost);
-     state = {...state, profile: updatedProfile,};
+     state.profile.posts.push(newPost);
+     updatePostMessage('')
      rerenderEntireTree({state,addPost, updatePostMessage})
  };
 export const updatePostMessage = (newPostText: string) => {
