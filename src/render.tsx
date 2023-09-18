@@ -38,7 +38,7 @@ type renderPropsType = {
         };
     };
     addPost: (postMessage: string) => void;
-
+    updatePostMessage: (newPostText: string) => void
 };
 
 export let rerenderEntireTree = (props: renderPropsType) => {
@@ -51,6 +51,7 @@ export let rerenderEntireTree = (props: renderPropsType) => {
                 messages={props.state.messagesPage.messages}
                 dialogs={props.state.messagesPage.dialogs}
                 newPostText={props.state.profile.newPostText}
+                updatePostMessage ={props.updatePostMessage}
             />
         </React.StrictMode>,
         document.getElementById("root")

@@ -12,6 +12,8 @@ type ProfilePropsType = {
 type PostsPropsType = {
     posts: ProfilePropsType[]
     addPost: (postMessage: string) => void
+    newPostText: string
+    updatePostMessage: (newPostText: string) => void
 }
 export const Profile = (props: PostsPropsType) => {
 
@@ -20,6 +22,8 @@ export const Profile = (props: PostsPropsType) => {
             <ProfileInfo/>
             <MyPost posts={props.posts}
                     addPost={props.addPost}
+                    newPostText={props.newPostText}
+                    updatePostMessage={props.updatePostMessage}
             />
         </div>
     )
