@@ -11,7 +11,7 @@ import Settings from "./components/Settings/Settings";
 import {Friends} from "./components/Friends/Friends";
 
 
-type DialogsStructureType ={
+type DialogsStructureType = {
     id: number
     name: string
 }
@@ -30,26 +30,29 @@ type AppPropsType = {
     dialogs: Array<DialogsStructureType>
     messages: Array<MessagesStructureType>
     posts: ProfileStructureType[]
-    addPost: (postMessage: string)=>void
+    addPost: (postMessage: string) => void
+    newPostText: string
 
 }
-const App = (props:AppPropsType ) => {
+const App = (props: AppPropsType) => {
 
     return (
         <BrowserRouter>
-        <div className='app-wrapper'>
-            <Header/>
-            <Navbar/>
-            <div className='app-wrapper-content'>
-                <Route path={'/dialogs'} render={()=> <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                <Route path={'/profile'} render={()=> <Profile posts={props.posts}
-                                                               addPost={props.addPost}/>}/>
-                <Route path={'/news'} render={()=> <News/>}/>
-                <Route path={'/music'} render={()=> <Music/>}/>
-                <Route path={'/settings'} render={()=> <Settings/>}/>
-                <Route path={'/friends'} render={()=> <Friends/>}/>
+            <div className='app-wrapper'>
+                <Header/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                    <Route path={'/dialogs'}
+                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                    <Route path={'/profile'} render={() => <Profile posts={props.posts}
+                                                                    addPost={props.addPost}
+                                                                    newPostText={props.newPostText}/>} />
+                    <Route path={'/news'} render={() => <News/>}/>
+                    <Route path={'/music'} render={() => <Music/>}/>
+                    <Route path={'/settings'} render={() => <Settings/>}/>
+                    <Route path={'/friends'} render={() => <Friends/>}/>
+                </div>
             </div>
-        </div>
         </BrowserRouter>
     );
 }

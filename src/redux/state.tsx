@@ -1,5 +1,5 @@
 import {rerenderEntireTree} from "../render";
-import {useState} from "react";
+
 
 
 export let state = {
@@ -8,6 +8,7 @@ export let state = {
                 {id: 1, message: 'Hello, how you doin?', likesCount: 12},
                 {id: 2, message: 'Hi, great, thanx', likesCount: 10},
             ],
+            newPostText: 'New',
         },
         messagesPage: {
             dialogs: [

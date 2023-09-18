@@ -27,6 +27,7 @@ type renderPropsType = {
     state: {
         profile: {
             posts: ProfileStructureType[];
+            newPostText: string
         };
         messagesPage: {
             dialogs: DialogsStructureType[];
@@ -37,6 +38,7 @@ type renderPropsType = {
         };
     };
     addPost: (postMessage: string) => void;
+
 };
 
 export let rerenderEntireTree = (props: renderPropsType) => {
@@ -48,6 +50,7 @@ export let rerenderEntireTree = (props: renderPropsType) => {
                 posts={props.state.profile.posts}
                 messages={props.state.messagesPage.messages}
                 dialogs={props.state.messagesPage.dialogs}
+                newPostText={props.state.profile.newPostText}
             />
         </React.StrictMode>,
         document.getElementById("root")

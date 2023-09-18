@@ -34,7 +34,7 @@ export const MyPost = (props: PostsPropsType) => {
                 <h2>My posts</h2>
                 <div/>
                 <div>
-                    <textarea value={newPostMessage} onChange={onChangeHandler}></textarea>
+                    <textarea value={newPostMessage} onChange={onChangeHandler}/>
                 </div>
                 <div>
                     <button onClick={onCLickAddPostHandler}>Add post</button>
