@@ -41,7 +41,7 @@ import {store, StoreType} from "./redux/state";
 //     subscribe: (observer: () => void) => void
 // };
 
-export const rerenderEntireTree = (/*props:StoreType*/) => { //пропсы можно и не передавать и сделать все с пустой функцией !!!!
+export const rerenderEntireTree = (/*props:StoreType*/) => { //пропсы можно и не передавать !!!!
 
     ReactDOM.render(
         <React.StrictMode>

@@ -29,6 +29,7 @@ export type StoreType = {
         messagesPage: {
             dialogs: DialogsStructureType[];
             messages: MessagesStructureType[];
+            newMessage: string
         };
         sidebar: {
             friends: FriendsStructureType[];
@@ -38,6 +39,8 @@ export type StoreType = {
     updatePostMessage: (newPostText: string) => void,
     subscribe: (observer: (state: StoreType) => void) => void
     rerenderEntireTree: (state:StoreType)=>void
+    addMessage: (message: string)  => void,
+    updateMessage: (message: string) => void,
 }
 
 export let store: StoreType = {
@@ -60,7 +63,8 @@ export let store: StoreType = {
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'Hi Hi how are you?'},
                 {id: 3, message: 'Hi Hi Hi'}
-            ]
+            ],
+            newMessage: ''
         },
         sidebar: {
             friends: [
@@ -70,6 +74,17 @@ export let store: StoreType = {
             ]
         },
 
+    },
+
+    addMessage (message: string) {
+        const  newMessage= {id: Math.random(), message: message};
+        store.state.messagesPage.messages.push(newMessage);
+        store.updateMessage('')
+        rerenderEntireTree(store)
+    },
+    updateMessage(message: string) {
+        store.state.messagesPage.newMessage = message
+        rerenderEntireTree(store)
     },
     addPost (postMessage: string) {
         const newPost = {id: Math.random(), message: postMessage, likesCount: 3};

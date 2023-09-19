@@ -44,7 +44,7 @@ export const MyPost = (props: PostsPropsType) => {
                 <h2>My posts</h2>
                 <div/>
                 <div>
-                    <textarea  onKeyPress={onKeyPressHandler} value={props.newPostText} onChange={onChangeHandler}/>
+                    <textarea placeholder={"Enter post's message"}  onKeyPress={onKeyPressHandler} value={props.newPostText} onChange={onChangeHandler}/>
                 </div>
                 <div>
                     <button onClick={onCLickAddPostHandler}>Add post</button>
