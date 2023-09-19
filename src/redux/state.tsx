@@ -1,6 +1,3 @@
-let rerenderEntireTree = (state:StoreType) => {
-    console.log('State Changed')
-}
 
 type ProfileStructureType = {
     id: number;
@@ -20,31 +17,35 @@ type FriendsStructureType = {
     name: string;
     message: string;
 };
-export type StoreType = {
-    state: {
-        profile: {
-            posts: ProfileStructureType[];
-            newPostText: string
-        };
-        messagesPage: {
-            dialogs: DialogsStructureType[];
-            messages: MessagesStructureType[];
-            newMessage: string
-        };
-        sidebar: {
-            friends: FriendsStructureType[];
-        };
+export type RootStateType ={
+    profile: {
+        posts: ProfileStructureType[];
+        newPostText: string,
     }
+    messagesPage: {
+        dialogs: DialogsStructureType[]
+        messages: MessagesStructureType[]
+        newMessage: string
+    },
+    sidebar: {
+        friends: FriendsStructureType[]
+    },
+}
+
+
+export type StoreType = {
+    _state: RootStateType
+    getState: ()=> RootStateType
     addPost: (postMessage: string) => void,
     updatePostMessage: (newPostText: string) => void,
-    subscribe: (observer: (state: StoreType) => void) => void
-    rerenderEntireTree: (state:StoreType)=>void
+    subscribe: (observer: () => void) => void
+    _rerenderEntireTree: (state:StoreType)=>void
     addMessage: (message: string)  => void,
     updateMessage: (message: string) => void,
 }
 
 export let store: StoreType = {
-    state: {
+    _state: {
         profile: {
             posts: [
                 {id: 1, message: 'Hello, how you doin?', likesCount: 12},
@@ -75,31 +76,33 @@ export let store: StoreType = {
         },
 
     },
-
+    getState(){
+      return this._state
+    },
     addMessage (message: string) {
         const  newMessage= {id: Math.random(), message: message};
-        store.state.messagesPage.messages.push(newMessage);
+        this._state.messagesPage.messages.push(newMessage);
         store.updateMessage('')
-        rerenderEntireTree(store)
+        this._rerenderEntireTree(store)
     },
     updateMessage(message: string) {
-        store.state.messagesPage.newMessage = message
-        rerenderEntireTree(store)
+        this._state.messagesPage.newMessage = message
+        this._rerenderEntireTree(store)
     },
     addPost (postMessage: string) {
         const newPost = {id: Math.random(), message: postMessage, likesCount: 3};
-        store.state.profile.posts.push(newPost);
+        this._state.profile.posts.push(newPost);
         store.updatePostMessage('')
-        rerenderEntireTree(store)
+        this._rerenderEntireTree(store)
     },
     updatePostMessage(newPostText: string) {
-        store.state.profile.newPostText = newPostText
-        rerenderEntireTree(store)
+        this._state.profile.newPostText = newPostText
+        this._rerenderEntireTree(store)
     },
-   subscribe(observer: (state:StoreType) => void) {
-        rerenderEntireTree = observer
+   subscribe(observer: () => void) {
+        this._rerenderEntireTree = observer
     },
-    rerenderEntireTree (state:StoreType){
+    _rerenderEntireTree (state:StoreType){
         console.log('State Changed')
     }
 }
