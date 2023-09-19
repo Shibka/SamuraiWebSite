@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {addPost, state, StateType, subscribe, updatePostMessage} from "./redux/state";
+import {store, StoreType} from "./redux/state";
 
 // type ProfileStructureType = {
 //     id: number;
@@ -41,21 +41,22 @@ import {addPost, state, StateType, subscribe, updatePostMessage} from "./redux/s
 //     subscribe: (observer: () => void) => void
 // };
 
-export const rerenderEntireTree = (props: StateType) => { //пропсы можно и не передавать и сделать все с пустой функцией !!!!
+export const rerenderEntireTree = (/*props:StoreType*/) => { //пропсы можно и не передавать и сделать все с пустой функцией !!!!
 
     ReactDOM.render(
         <React.StrictMode>
             <App
-                addPost={addPost}
-                posts={state.profile.posts}
-                messages={state.messagesPage.messages}
-                dialogs={state.messagesPage.dialogs}
-                newPostMessage={state.profile.newPostText}
-                updatePostMessage={updatePostMessage}
+                store={store}
+                // addPost={store.addPost}
+                // posts={store.state.profile.posts}
+                // messages={store.state.messagesPage.messages}
+                // dialogs={store.state.messagesPage.dialogs}
+                // newPostMessage={store.state.profile.newPostText}
+                // updatePostMessage={store.updatePostMessage}
             />
         </React.StrictMode>,
         document.getElementById("root")
     );
 };
-rerenderEntireTree(state) // тут может быть пусто как и все функции в state
-subscribe(rerenderEntireTree)
+rerenderEntireTree() // тут может быть пусто как и все функции в state
+store.subscribe(rerenderEntireTree)

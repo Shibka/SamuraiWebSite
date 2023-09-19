@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Friends} from "./components/Friends/Friends";
+import {store, StoreType} from "./redux/state";
 
 
 type DialogsStructureType = {
@@ -35,7 +36,10 @@ type AppPropsType = {
     updatePostMessage: (newPostText: string) => void
 
 }
-const App = (props: AppPropsType) => {
+type AppStorePropsType={
+    store: StoreType
+}
+const App = (props: AppStorePropsType) => {
 
     return (
         <BrowserRouter>
@@ -44,11 +48,12 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path={'/profile'} render={() => <Profile posts={props.posts}
-                                                                    addPost={props.addPost}
-                                                                    newPostText={props.newPostMessage}
-                                                                    updatePostMessage={props.updatePostMessage}
+                           render={() => <Dialogs dialogs={props.store.state.messagesPage.dialogs}
+                                                  messages={props.store.state.messagesPage.messages}/>}/>
+                    <Route path={'/profile'} render={() => <Profile posts={props.store.state.profile.posts}
+                                                                    addPost={props.store.addPost}
+                                                                    newPostText={props.store.state.profile.newPostText}
+                                                                    updatePostMessage={props.store.updatePostMessage}
                     />} />
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
