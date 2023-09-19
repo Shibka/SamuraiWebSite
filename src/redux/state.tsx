@@ -1,4 +1,5 @@
 let rerenderEntireTree = (state:StateType) => {
+    console.log('State Changed')
 }
 
 type ProfileStructureType = {
@@ -20,7 +21,6 @@ type FriendsStructureType = {
     message: string;
 };
 export type StateType = {
-
     profile: {
         posts: ProfileStructureType[];
         newPostText: string
