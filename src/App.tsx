@@ -34,14 +34,16 @@ const state = props.store.getState()
                 <div className='app-wrapper-content'>
                     <Route path={'/dialogs'}
                            render={() => <Dialogs dialogs={state.messagesPage.dialogs}
-                                                  updateMessage={props.store.updateMessage}
-                                                  addMessage={props.store.addMessage}
+                                                  updateMessage={props.store.updateMessage.bind(props.store)}
+                                                  addMessage={props.store.addMessage.bind(props.store)}
                                                   newMessage={state.messagesPage.newMessage}
                                                   messages={state.messagesPage.messages}/>}/>
                     <Route path={'/profile'} render={() => <Profile posts={state.profile.posts}
-                                                                    addPost={props.store.addPost}
+                                                                    // addPost={props.store.addPost.bind(props.store)}
+                                                                    // updatePostMessage={props.store.updatePostMessage.bind(props.store)}
+                                                                    dispatch={props.store.dispatch.bind(props.store)}
                                                                     newPostText={state.profile.newPostText}
-                                                                    updatePostMessage={props.store.updatePostMessage}
+
                     />} />
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>

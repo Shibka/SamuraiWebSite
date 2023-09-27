@@ -11,9 +11,10 @@ type ProfilePropsType = {
 
 type PostsPropsType = {
     posts: ProfilePropsType[]
-    addPost: (postMessage: string) => void
+    // addPost: (postMessage: string) => void
+    dispatch: (action: any) => void
     newPostText: string
-    updatePostMessage: (newPostText: string) => void
+    // updatePostMessage: (newPostText: string) => void
 }
 export const Profile = (props: PostsPropsType) => {
 
@@ -21,9 +22,9 @@ export const Profile = (props: PostsPropsType) => {
         <div>
             <ProfileInfo/>
             <MyPost posts={props.posts}
-                    addPost={props.addPost}
+                    dispatch={props.dispatch}
                     newPostText={props.newPostText}
-                    updatePostMessage={props.updatePostMessage}
+                    // updatePostMessage={props.updatePostMessage}
             />
         </div>
     )

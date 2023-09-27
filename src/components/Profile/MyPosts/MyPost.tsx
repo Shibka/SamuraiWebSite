@@ -9,27 +9,29 @@ type PostsStructureType = {
 }
 type PostsPropsType = {
     posts: PostsStructureType[]
-    addPost: (postMessage: string) => void
+    // addPost: (postMessage: string) => void
+    dispatch: (action: any) => void
     newPostText: string
-    updatePostMessage: (newPostText: string) => void
+    // updatePostMessage: (newPostText: string) => void
 }
 export const MyPost = (props: PostsPropsType) => {
 
 
-
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updatePostMessage(e.currentTarget.value)
+        // props.updatePostMessage(e.currentTarget.value)
+        props.dispatch({type: 'UPDATE-POST-MESSAGE', newPostText: e.currentTarget.value})
     }
     const onCLickAddPostHandler = () => {
-        if(props.newPostText.trim()){
-            props.addPost(props.newPostText)
+        if (props.newPostText.trim()) {
+            // props.addPost(props.newPostText)
+            props.dispatch({type: 'ADD-POST', postMessage: props.newPostText})
             // props.updatePostMessage('')
         } else {
-       return ' '
+            return ' '
         }
 
     }
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) =>{
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         e.key === 'Enter' && e.ctrlKey && onCLickAddPostHandler()
     }
 
@@ -44,7 +46,10 @@ export const MyPost = (props: PostsPropsType) => {
                 <h2>My posts</h2>
                 <div/>
                 <div>
-                    <textarea placeholder={"Enter post's message"}  onKeyPress={onKeyPressHandler} value={props.newPostText} onChange={onChangeHandler}/>
+                    <textarea placeholder={"Enter post's message"}
+                              onKeyPress={onKeyPressHandler}
+                              value={props.newPostText}
+                              onChange={onChangeHandler}/>
                 </div>
                 <div>
                     <button onClick={onCLickAddPostHandler}>Add post</button>
