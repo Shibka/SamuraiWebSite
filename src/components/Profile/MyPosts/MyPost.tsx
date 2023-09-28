@@ -1,6 +1,9 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPost.module.css'
 import {Post} from "./Post/Post";
+import {addPostAC, updatePostMessageAC} from "../../../redux/state";
+import {ActionTypes} from "../../../redux/state";
+
 
 type PostsStructureType = {
     id: number
@@ -10,22 +13,26 @@ type PostsStructureType = {
 type PostsPropsType = {
     posts: PostsStructureType[]
     // addPost: (postMessage: string) => void
-    dispatch: (action: any) => void
+    dispatch: (action: ActionTypes) => void
     newPostText: string
     // updatePostMessage: (newPostText: string) => void
 }
+
+
+
 export const MyPost = (props: PostsPropsType) => {
 
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         // props.updatePostMessage(e.currentTarget.value)
-        props.dispatch({type: 'UPDATE-POST-MESSAGE', newPostText: e.currentTarget.value})
+        let newText = e.currentTarget.value
+        props.dispatch(updatePostMessageAC(newText))
     }
     const onCLickAddPostHandler = () => {
         if (props.newPostText.trim()) {
             // props.addPost(props.newPostText)
-            props.dispatch({type: 'ADD-POST', postMessage: props.newPostText})
             // props.updatePostMessage('')
+            props.dispatch(addPostAC(props.newPostText))
         } else {
             return ' '
         }

@@ -40,9 +40,11 @@ export type StoreType = {
     _callSubscriber: (state: StoreType) => void
     addMessage: (message: string) => void,
     updateMessage: (message: string) => void,
-    dispatch: (action: any) => void
+    dispatch: (action: ActionTypes) => void
 }
-
+export type ActionTypes =  AddPostActionType | UpdatePostMessageActionType
+type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>
 export let store: StoreType = {
     _state: {
         profile: {
@@ -123,4 +125,10 @@ export let store: StoreType = {
             this._callSubscriber(store)
         }
     }
+}
+export const addPostAC = (postMessage: string) => {
+    return {type: 'ADD-POST', postMessage: postMessage}as const
+}
+export const updatePostMessageAC = (newPostText: string)  => {
+    return {type: 'UPDATE-POST-MESSAGE', newPostText: newPostText}as const
 }
