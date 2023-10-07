@@ -1,4 +1,3 @@
-import {message} from "antd";
 
 type ProfileStructureType = {
     id: number;
@@ -23,10 +22,10 @@ export type RootStateType = {
         posts: ProfileStructureType[];
         newPostText: string,
     }
-    messagesPage: {
+    dialogsPage: {
         dialogs: DialogsStructureType[]
         messages: MessagesStructureType[]
-        newMessage: string
+        newMessageText: string
     },
     sidebar: {
         friends: FriendsStructureType[]
@@ -47,12 +46,12 @@ export type StoreType = {
 export type ActionTypes = AddPostActionType
     | UpdatePostMessageActionType
     | AddMessageActionType
-    | UpdateMessageActionType
+    | UpdateDialogsMessageActionType
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>
 type AddMessageActionType = ReturnType<typeof addMessageAC>
-type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
+type UpdateDialogsMessageActionType = ReturnType<typeof updateDialogsMessageAC>
 export let store: StoreType = {
     _state: {
         profile: {
@@ -62,7 +61,7 @@ export let store: StoreType = {
             ],
             newPostText: '',
         },
-        messagesPage: {
+        dialogsPage: {
             dialogs: [
                 {id: 1, name: 'Alex'},
                 {id: 2, name: 'Igor'},
@@ -74,7 +73,7 @@ export let store: StoreType = {
                 {id: 2, message: 'Hi Hi how are you?'},
                 {id: 3, message: 'Hi Hi Hi'}
             ],
-            newMessage: ''
+            newMessageText: ''
         },
         sidebar: {
             friends: [
@@ -133,11 +132,11 @@ export let store: StoreType = {
             this._callSubscriber(store)
         } else if (action.type === 'ADD-MESSAGE') {
             const newMessage = {id: Math.random(), message: action.message};
-            this._state.messagesPage.messages.push(newMessage);
-            this._state.messagesPage.newMessage = ''
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessageText = ''
             this._callSubscriber(store)
-        } else if (action.type === 'UPDATE-MESSAGE') {
-            this._state.messagesPage.newMessage = action.message
+        } else if (action.type === 'UPDATE-DIALOGS-MESSAGE') {
+            this._state.dialogsPage.newMessageText = action.message
             this._callSubscriber(store)
         }
     }
@@ -146,11 +145,11 @@ export const addPostAC = (postMessage: string) => {
     return {type: 'ADD-POST', postMessage: postMessage} as const
 }
 export const updatePostMessageAC = (newPostText: string) => {
-    return {type: 'UPDATE-POST-MESSAGE', newPostText: newPostText} as const
+    return {type: 'UPDATE-POST-MESSAGE', newPostText} as const
 }
 export const addMessageAC = (message: string) => {
     return {type: 'ADD-MESSAGE', message} as const
 }
-export const updateMessageAC = (message: string) => {
-    return {type: 'UPDATE-MESSAGE', message} as const
+export const updateDialogsMessageAC = (message: string) => {
+    return {type: 'UPDATE-DIALOGS-MESSAGE', message} as const
 }

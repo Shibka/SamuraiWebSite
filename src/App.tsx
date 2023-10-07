@@ -33,12 +33,12 @@ const state = props.store.getState()
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path={'/dialogs'}
-                           render={() => <Dialogs dialogs={state.messagesPage.dialogs}
+                           render={() => <Dialogs dialogs={state.dialogsPage.dialogs}
                                                   // updateMessage={props.store.updateMessage.bind(props.store)}
                                                   // addMessage={props.store.addMessage.bind(props.store)}
                                                   dispatch={props.store.dispatch.bind(props.store)}
-                                                  newMessage={state.messagesPage.newMessage}
-                                                  messages={state.messagesPage.messages}/>}/>
+                                                  newMessage={state.dialogsPage.newMessageText}
+                                                  messages={state.dialogsPage.messages}/>}/>
                     <Route path={'/profile'} render={() => <Profile posts={state.profile.posts}
                                                                     // addPost={props.store.addPost.bind(props.store)}
                                                                     // updatePostMessage={props.store.updatePostMessage.bind(props.store)}
