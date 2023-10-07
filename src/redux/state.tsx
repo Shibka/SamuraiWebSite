@@ -1,3 +1,5 @@
+import {message} from "antd";
+
 type ProfileStructureType = {
     id: number;
     message: string;
@@ -38,13 +40,19 @@ export type StoreType = {
 
     subscribe: (observer: () => void) => void
     _callSubscriber: (state: StoreType) => void
-    addMessage: (message: string) => void,
-    updateMessage: (message: string) => void,
+    // addMessage: (message: string) => void,
+    // updateMessage: (message: string) => void,
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes =  AddPostActionType | UpdatePostMessageActionType
+export type ActionTypes = AddPostActionType
+    | UpdatePostMessageActionType
+    | AddMessageActionType
+    | UpdateMessageActionType
+
 type AddPostActionType = ReturnType<typeof addPostAC>
 type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>
+type AddMessageActionType = ReturnType<typeof addMessageAC>
+type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
 export let store: StoreType = {
     _state: {
         profile: {
@@ -83,20 +91,20 @@ export let store: StoreType = {
     subscribe(observer: () => void) {
         this._callSubscriber = observer
     },
-
-    addMessage(message: string) {
-        const newMessage = {id: Math.random(), message: message};
-        this._state.messagesPage.messages.push(newMessage);
-        store.updateMessage('')
-        this._callSubscriber(store)
-    },
-    updateMessage(message: string) {
-        this._state.messagesPage.newMessage = message
-        this._callSubscriber(store)
-    },
+    //
+    // addMessage(message: string) {
+    //     const newMessage = {id: Math.random(), message: message};
+    //     this._state.messagesPage.messages.unshift(newMessage);
+    //     store.updateMessage('')
+    //     this._callSubscriber(store)
+    // },
+    // updateMessage(message: string) {
+    //     this._state.messagesPage.newMessage = message
+    //     this._callSubscriber(store)
+    // },
     // addPost(postMessage: string) {
     //     const newPost = {id: Math.random(), message: postMessage, likesCount: 3};
-    //     this._state.profile.posts.push(newPost);
+    //     this._state.profile.posts.unshift(newPost);
     //     store.updatePostMessage('')
     //     this._callSubscriber(store)
     // },
@@ -116,19 +124,33 @@ export let store: StoreType = {
         if (action.type === 'ADD-POST') {
             debugger
             const newPost = {id: Math.random(), message: action.postMessage, likesCount: 3};
-            this._state.profile.posts.push(newPost);
+            this._state.profile.posts.unshift(newPost);
             this._state.profile.newPostText = ''
             this._callSubscriber(store)
-        }else if(action.type === 'UPDATE-POST-MESSAGE'){
+        } else if (action.type === 'UPDATE-POST-MESSAGE') {
             debugger
             this._state.profile.newPostText = action.newPostText
+            this._callSubscriber(store)
+        } else if (action.type === 'ADD-MESSAGE') {
+            const newMessage = {id: Math.random(), message: action.message};
+            this._state.messagesPage.messages.push(newMessage);
+            this._state.messagesPage.newMessage = ''
+            this._callSubscriber(store)
+        } else if (action.type === 'UPDATE-MESSAGE') {
+            this._state.messagesPage.newMessage = action.message
             this._callSubscriber(store)
         }
     }
 }
 export const addPostAC = (postMessage: string) => {
-    return {type: 'ADD-POST', postMessage: postMessage}as const
+    return {type: 'ADD-POST', postMessage: postMessage} as const
 }
-export const updatePostMessageAC = (newPostText: string)  => {
-    return {type: 'UPDATE-POST-MESSAGE', newPostText: newPostText}as const
+export const updatePostMessageAC = (newPostText: string) => {
+    return {type: 'UPDATE-POST-MESSAGE', newPostText: newPostText} as const
+}
+export const addMessageAC = (message: string) => {
+    return {type: 'ADD-MESSAGE', message} as const
+}
+export const updateMessageAC = (message: string) => {
+    return {type: 'UPDATE-MESSAGE', message} as const
 }

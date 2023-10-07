@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
+import {ActionTypes, addMessageAC, updateMessageAC} from "../../redux/state";
 
 type DialogsStructureType = {
     id: number
@@ -12,10 +13,11 @@ type MessagesStructureType = {
     message: string
 }
 type DialogsPropsType = {
+    dispatch: (action: ActionTypes) => void
     dialogs: Array<DialogsStructureType>
     messages: Array<MessagesStructureType>
-    updateMessage: (message: string) => void
-    addMessage: (message: string) => void
+    // updateMessage: (message: string) => void
+    // addMessage: (message: string) => void
     newMessage: string
 }
 
@@ -28,16 +30,16 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     const addMessageHandler = () => {
         if(props.newMessage.trim()){
-            props.addMessage(props.newMessage)
+            props.dispatch(addMessageAC(props.newMessage))
         }else return ''
     }
     const onKeyAddMessage=(e: React.KeyboardEvent<HTMLTextAreaElement>)=>{
         if(e.key === 'Enter' && props.newMessage.trim()){
-            props.addMessage(props.newMessage)
+            props.dispatch(addMessageAC(props.newMessage))
         }
     }
     const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateMessage(e.currentTarget.value)
+        props.dispatch(updateMessageAC(e.currentTarget.value))
     }
     return (
         <div className={s.dialogs}>
