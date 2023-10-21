@@ -1,3 +1,6 @@
+import {AddPostActionType, profileReducer, UpdatePostMessageActionType} from "./reducers/profileReducer";
+import {AddMessageActionType, dialogReducer, UpdateDialogsMessageActionType} from "./reducers/dialogReducer";
+import {sidebarReducer} from "./reducers/sidebarReducer";
 
 type ProfileStructureType = {
     id: number;
@@ -43,15 +46,16 @@ export type StoreType = {
     // updateMessage: (message: string) => void,
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes = AddPostActionType
+export type ActionTypes =
+    AddPostActionType
     | UpdatePostMessageActionType
     | AddMessageActionType
     | UpdateDialogsMessageActionType
 
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>
-type AddMessageActionType = ReturnType<typeof addMessageAC>
-type UpdateDialogsMessageActionType = ReturnType<typeof updateDialogsMessageAC>
+// type AddPostActionType = ReturnType<typeof addPostAC>
+// type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>
+// type AddMessageActionType = ReturnType<typeof addMessageAC>
+// type UpdateDialogsMessageActionType = ReturnType<typeof updateDialogsMessageAC>
 export let store: StoreType = {
     _state: {
         profile: {
@@ -120,36 +124,43 @@ export let store: StoreType = {
         // }else if(action.type === 'UPDATE-POST-MESSAGE'){
         //     this._updatePostMessage(action.newPostText)
         // }
-        if (action.type === 'ADD-POST') {
-            debugger
-            const newPost = {id: Math.random(), message: action.postMessage, likesCount: 3};
-            this._state.profile.posts.unshift(newPost);
-            this._state.profile.newPostText = ''
-            this._callSubscriber(store)
-        } else if (action.type === 'UPDATE-POST-MESSAGE') {
-            debugger
-            this._state.profile.newPostText = action.newPostText
-            this._callSubscriber(store)
-        } else if (action.type === 'ADD-MESSAGE') {
-            const newMessage = {id: Math.random(), message: action.message};
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber(store)
-        } else if (action.type === 'UPDATE-DIALOGS-MESSAGE') {
-            this._state.dialogsPage.newMessageText = action.message
-            this._callSubscriber(store)
-        }
+
+        this._state.profile = profileReducer(this._state.profile, action)
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber(store)
+
+        // if (action.type === 'ADD-POST') {
+        //     debugger
+        //     const newPost = {id: Math.random(), message: action.postMessage, likesCount: 3};
+        //     this._state.profile.posts.unshift(newPost);
+        //     this._state.profile.newPostText = ''
+        //     this._callSubscriber(store)
+        // } else if (action.type === 'UPDATE-POST-MESSAGE') {
+        //     debugger
+        //     this._state.profile.newPostText = action.newPostText
+        //     this._callSubscriber(store)
+        // } else if (action.type === 'ADD-MESSAGE') {
+        //     const newMessage = {id: Math.random(), message: action.message};
+        //     this._state.dialogsPage.messages.push(newMessage);
+        //     this._state.dialogsPage.newMessageText = ''
+        //     this._callSubscriber(store)
+        // } else if (action.type === 'UPDATE-DIALOGS-MESSAGE') {
+        //     this._state.dialogsPage.newMessageText = action.message
+        //     this._callSubscriber(store)
+        // }
     }
 }
-export const addPostAC = (postMessage: string) => {
-    return {type: 'ADD-POST', postMessage: postMessage} as const
-}
-export const updatePostMessageAC = (newPostText: string) => {
-    return {type: 'UPDATE-POST-MESSAGE', newPostText} as const
-}
-export const addMessageAC = (message: string) => {
-    return {type: 'ADD-MESSAGE', message} as const
-}
-export const updateDialogsMessageAC = (message: string) => {
-    return {type: 'UPDATE-DIALOGS-MESSAGE', message} as const
-}
+// export const addPostAC = (postMessage: string) => {
+//     return {type: 'ADD-POST', postMessage: postMessage} as const
+// }
+// export const updatePostMessageAC = (newPostText: string) => {
+//     return {type: 'UPDATE-POST-MESSAGE', newPostText} as const
+// }
+// export const addMessageAC = (message: string) => {
+//     return {type: 'ADD-MESSAGE', message} as const
+// }
+// export const updateDialogsMessageAC = (message: string) => {
+//     return {type: 'UPDATE-DIALOGS-MESSAGE', message} as const
+// }
