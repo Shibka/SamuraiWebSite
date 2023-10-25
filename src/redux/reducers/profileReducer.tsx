@@ -2,7 +2,15 @@ import {ActionTypes} from "../store";
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>
-export const profileReducer = (state: any, action: ActionTypes) => {
+
+let initialState = {
+    posts: [
+        {id: 1, message: 'Hello, how you doin?', likesCount: 12},
+        {id: 2, message: 'Hi, great, thanx', likesCount: 10},
+    ],
+    newPostText: '',
+}
+export const profileReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {id: Math.random(), message: action.postMessage, likesCount: 3};

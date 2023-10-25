@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {store} from "./redux/store";
+import {store} from "./redux/redux-store";
+import {StoreType} from "./redux/store";
 
 // type ProfileStructureType = {
 //     id: number;
@@ -59,4 +60,9 @@ export const rerenderEntireTree = (/*props:StoreType*/) => { //пропсы мо
     );
 };
 rerenderEntireTree() // тут может быть пусто как и все функции в state
+
 store.subscribe(rerenderEntireTree)
+// store.subscribe(()=>{
+//     let state = store.getState()
+//     rerenderEntireTree(state)
+// })
