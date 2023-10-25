@@ -5,6 +5,7 @@ interface Options {
     allowDate: boolean;
     allowUndefined: boolean;
     allowClass: boolean;
+    allowError: boolean;
     maxDepth: number;
     space: number | undefined;
     lazyEval: boolean;

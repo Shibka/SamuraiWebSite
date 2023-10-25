@@ -1,4 +1,4 @@
-import {ActionTypes} from "../state";
+import {ActionTypes} from "../store";
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdatePostMessageActionType = ReturnType<typeof updatePostMessageAC>

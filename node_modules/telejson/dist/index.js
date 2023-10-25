@@ -1396,6 +1396,19 @@ var replacer = function replacer2(options2) {
       if (value2 === this) {
         return `_duplicate_${JSON.stringify(keys)}`;
       }
+      if (value2 instanceof Error && options2.allowError) {
+        return {
+          __isConvertedError__: true,
+          errorProperties: {
+            ...value2.cause ? { cause: value2.cause } : {},
+            ...value2,
+            name: value2.name,
+            message: value2.message,
+            stack: value2.stack,
+            "_constructor-name_": value2.constructor.name
+          }
+        };
+      }
       if (value2.constructor && value2.constructor.name && value2.constructor.name !== "Object" && !Array.isArray(value2) && !options2.allowClass) {
         return void 0;
       }
@@ -1439,6 +1452,12 @@ var reviver2 = function reviver(options) {
     }
     if (key === "_constructor-name_") {
       return value;
+    }
+    if (isObject3(value) && value.__isConvertedError__) {
+      const { message, ...properties } = value.errorProperties;
+      const error = new Error(message);
+      Object.assign(error, properties);
+      return error;
     }
     if (isObject3(value) && value["_constructor-name_"] && options.allowFunction) {
       const name2 = value["_constructor-name_"];
@@ -1506,6 +1525,7 @@ var defaultOptions = {
   allowRegExp: true,
   allowDate: true,
   allowClass: true,
+  allowError: true,
   allowUndefined: true,
   allowSymbol: true,
   lazyEval: true

@@ -1,5 +1,4 @@
-import {ActionTypes} from "../state";
-
+import {ActionTypes} from "../store";
 
 export type AddMessageActionType = ReturnType<typeof addMessageAC>
 export type UpdateDialogsMessageActionType = ReturnType<typeof updateDialogsMessageAC>

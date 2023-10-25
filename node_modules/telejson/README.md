@@ -16,6 +16,7 @@ yarn add telejson
 - Function
 - Class
 - Symbol
+- Error
 - etc.
 
 Also JSON doesn't support cyclic data structures.
@@ -116,6 +117,8 @@ Only relevant when using `stringify`.
 
 `allowClass`: When set to false, class instances will not be serialized. (default = true)
 
+`allowError`: When set to false, error instances will not be serialized. (default = true)
+
 `allowDate`: When set to false, Date objects will not be serialized. (default = true)
 
 `allowUndefined`: When set to false, `undefined` will not be serialized. (default = true)
@@ -139,6 +142,14 @@ If you have any suggestions, please open an issue.
 All contributions are welcome!
 
 ### run tests:
+
+first, build the package:
+
+```sh
+yarn build
+```
+
+then run the tests:
 
 ```sh
 yarn test
