@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {store} from "./redux/redux-store";
+import {reduxStore} from "./redux/redux-store";
 import {StoreType} from "./redux/store";
 
 // type ProfileStructureType = {
@@ -42,12 +42,11 @@ import {StoreType} from "./redux/store";
 //     subscribe: (observer: () => void) => void
 // };
 
-export const rerenderEntireTree = (/*props:StoreType*/) => { //пропсы можно и не передавать !!!!
-
+export const rerenderEntireTree = (props:StoreType) => {
     ReactDOM.render(
         <React.StrictMode>
             <App
-                store={store}
+                store={reduxStore}
                 // addPost={store.addPost}
                 // posts={store.state.profile.posts}
                 // messages={store.state.messagesPage.messages}
@@ -59,10 +58,9 @@ export const rerenderEntireTree = (/*props:StoreType*/) => { //пропсы мо
         document.getElementById("root")
     );
 };
-rerenderEntireTree() // тут может быть пусто как и все функции в state
+rerenderEntireTree(reduxStore)
 
-store.subscribe(rerenderEntireTree)
-// store.subscribe(()=>{
-//     let state = store.getState()
-//     rerenderEntireTree(state)
-// })
+// store.subscribe(rerenderEntireTree)
+reduxStore.subscribe(()=>{
+    rerenderEntireTree(reduxStore)
+})
